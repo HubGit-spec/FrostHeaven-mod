@@ -1,82 +1,67 @@
 plugins {
     id 'java-library'
-    id 'maven-publish'
     id 'net.neoforged.moddev' version '2.0.116'
-    id 'idea'
 }
+
+println("Ы")
 
 version = mod_version
 group = mod_group_id
-base {
-    archivesName = mod_id
-}
+base.archivesName = mod_id
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 
-// ========== РЕПОЗИТОРИИ ==========
+// ТОЛЬКО локальный репозиторий - убираем ВСЕ maven
 repositories {
-    // 1. Локальная папка с jar-файлами - ДОЛЖНА БЫТЬ ПЕРВОЙ
     flatDir {
-        dirs "libs"
-    }
-
-    // 2. Основные репозитории
-    mavenCentral()
-
-    maven {
-        name = "NeoForged"
-        url = "https://maven.neoforged.net/releases"
-    }
-
-    maven {
-        name = "Architectury"
-        url = "https://maven.architectury.dev"
-    }
-
-    maven {
-        name = "ParchmentMC"
-        url = "https://maven.parchmentmc.org"
+        name 'localLibs'
+        dirs 'libs'
     }
 }
 
-// ========== КОНФИГУРАЦИЯ РАЗРЕШЕНИЯ ЗАВИСИМОСТЕЙ ==========
+// ПРОСТОЙ способ - отключаем сетевые проверки
 configurations.all {
-    resolutionStrategy {
-        // Отключаем кэширование
-        cacheChangingModulesFor 0, 'seconds'
-        cacheDynamicVersionsFor 0, 'seconds'
-
-        // Отключаем проверку конфликтов версий
-        failOnVersionConflict = false
-
-        // Предпочитаем локальные версии
-        preferProjectModules()
-    }
-
-    // Исключаем проблемную зависимость
     exclude group: 'net.neoforged', module: 'minecraft-dependencies'
 }
 
-// ========== ЗАВИСИМОСТИ ==========
 dependencies {
-    // Обязательный runtime
+    // 1. NeoForm runtime - КРИТИЧЕСКИ ВАЖНО
     neoFormRuntimeTool files('libs/neoform-runtime-1.0.43-all.jar')
 
-    // ВСЕ локальные библиотеки
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    // Также явно добавляем ZIP файлы
-    implementation fileTree(dir: 'libs', include: ['*.zip'])
-
-    // NeoForm специфичные зависимости
-    compileOnly "net.neoforged:neoform:1.21-20240613.152323@zip"
+    // 2. ВСЕ остальные файлы как обычные зависимости
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.zip'])
 }
 
-// ========== NEOFORGE КОНФИГУРАЦИЯ ==========
+// Специально для neoFormRuntimeExternalTools конфигурации
+configurations.configureEach { config ->
+    if (config.name.contains('neoForm') || config.name.contains('Runtime')) {
+        // Добавляем файлы к этим специфичным конфигурациям
+        config.dependencies.add(dependencies.create(files(
+                'libs/jst-cli-bundle-1.0.74.jar',
+                'libs/mergetool-1.1.7-fatjar.jar',
+                'libs/Quack-0.4.10.101.jar',
+                'libs/fastutil-8.3.1.jar',
+                'libs/commons-lang3-3.9.jar',
+                'libs/commons-compress-1.18.jar',
+                'libs/xz-1.8.jar',
+                'libs/asm-9.5.jar',
+                'libs/asm-commons-9.5.jar',
+                'libs/asm-tree-9.5.jar',
+                'libs/asm-util-9.5.jar',
+                'libs/asm-analysis-9.5.jar',
+                'libs/srgutils-0.4.15.jar',
+                'libs/DiffPatch-2.0.0.36-all.jar'
+        )))
+    }
+}
+
 neoForge {
     version = project.neo_version
 
-    // Если используете parchment
+    // Отключаем ВСЕ автоматические загрузки
+    autoDownloadJavaToolchain = false
+
+    // Если используете parchment - укажите, что файл локальный
     if (project.hasProperty('parchment_mappings_version')) {
         parchment {
             mappingsVersion = project.parchment_mappings_version
@@ -85,18 +70,24 @@ neoForge {
     }
 
     runs {
+        configureEach {
+            systemProperty 'forge.logging.markers', 'REGISTRIES'
+            logLevel = org.slf4j.event.Level.DEBUG
+            // КРИТИЧЕСКИ ВАЖНЫЕ настройки офлайн
+            systemProperty 'neoform.offline', 'true'
+            systemProperty 'jst.offline', 'true'
+            systemProperty 'gradle.offline', 'true'
+        }
+
         client {
             client()
             systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
-            // Для офлайн режима
-            systemProperty 'neoform.offline', 'true'
         }
 
         server {
             server()
             programArgument '--nogui'
             systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
-            systemProperty 'neoform.offline', 'true'
         }
 
         gameTestServer {
@@ -110,13 +101,6 @@ neoForge {
                     file('src/generated/resources/').getAbsolutePath(), '--existing',
                     file('src/main/resources/').getAbsolutePath()
         }
-
-        configureEach {
-            systemProperty 'forge.logging.markers', 'REGISTRIES'
-            logLevel = org.slf4j.event.Level.DEBUG
-            // Офлайн настройки
-            systemProperty 'neoform.offline', 'true'
-        }
     }
 
     mods {
@@ -126,75 +110,59 @@ neoForge {
     }
 }
 
-// ========== ПРОСТАЯ ПРОВЕРКА ==========
+// ========== ВАЖНО: Отключаем задачу createMinecraftArtifacts ==========
+gradle.startParameter.excludedTaskNames += ['createMinecraftArtifacts']
+
+// Альтернативно - в коде
+tasks.whenTaskAdded { task ->
+    if (task.name == 'createMinecraftArtifacts') {
+        task.enabled = false
+    }
+}
+
+// ========== Проверка наличия файлов ==========
 task checkLibs {
-    group = 'help'
-
     doFirst {
-        println "=== ПРОВЕРКА БИБЛИОТЕК ==="
+        println "=" * 60
+        println "ПРОВЕРКА ФАЙЛОВ В LIBS"
+        println "=" * 60
 
-        def libsDir = file('libs')
-        if (libsDir.exists()) {
-            def files = libsDir.listFiles()
-            files?.each { f ->
-                println "${f.name.padRight(50)} ${f.length()} байт"
+        def required = [
+                'neoform-runtime-1.0.43-all.jar',
+                'jst-cli-bundle-1.0.74.jar',
+                'mergetool-1.1.7-fatjar.jar',
+                'Quack-0.4.10.101.jar',
+                'fastutil-8.3.1.jar',
+                'commons-lang3-3.9.jar',
+                'commons-compress-1.18.jar',
+                'xz-1.8.jar',
+                'asm-9.5.jar',
+                'asm-commons-9.5.jar',
+                'srgutils-0.4.15.jar',
+                'DiffPatch-2.0.0.36-all.jar'
+        ]
+
+        required.each { file ->
+            def f = file("libs/$file")
+            if (f.exists()) {
+                println "✅ $file"
+            } else {
+                println "❌ $file - ОТСУТСТВУЕТ!"
             }
-            println "Всего файлов: ${files?.size() ?: 0}"
-        } else {
-            println "ОШИБКА: Папка libs не существует!"
         }
+
+        println "=" * 60
     }
 }
 
-// ========== СЕРВИСНЫЕ НАСТРОЙКИ ==========
-sourceSets.main.resources {
-    srcDir 'src/generated/resources'
-}
-
-var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
-    var replaceProperties = [
-            minecraft_version: minecraft_version,
-            minecraft_version_range: minecraft_version_range,
-            neo_version: neo_version,
-            loader_version_range: loader_version_range,
-            mod_id: mod_id,
-            mod_name: mod_name,
-            mod_license: mod_license,
-            mod_version: mod_version,
-            mod_authors: mod_authors,
-            mod_description: mod_description
-    ]
-    inputs.properties replaceProperties
-    expand replaceProperties
-    from "src/main/templates"
-    into "build/generated/sources/modMetadata"
-}
-
-sourceSets.main.resources.srcDir generateModMetadata
-neoForge.ideSyncTask generateModMetadata
-
-// ========== ПУБЛИКАЦИЯ ==========
-publishing {
-    publications {
-        register('mavenJava', MavenPublication) {
-            from components.java
-        }
-    }
-    repositories {
-        maven {
-            url "file://${project.projectDir}/repo"
-        }
-    }
-}
-
-// ========== НАСТРОЙКИ КОМПИЛЯЦИИ ==========
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
 }
 
+// Настройки для IDEA
 idea {
     module {
-        downloadSources = true
-        downloadJavadoc = true
+        downloadSources = false  // В офлайн режиме не качаем
+        downloadJavadoc = false
     }
 }
