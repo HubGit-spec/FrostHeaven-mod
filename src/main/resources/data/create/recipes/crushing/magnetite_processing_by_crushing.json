@@ -1,0 +1,19 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "item": "fh:raw_magnetite"
+    }
+  ],
+  "processing_time": 800,
+  "results": [
+    {
+      "count": 1,
+      "id": "fh:magnetite"
+    },
+    {
+      "chance": 0.25,
+      "id": "create:experience_nugget"
+    }
+  ]
+}
