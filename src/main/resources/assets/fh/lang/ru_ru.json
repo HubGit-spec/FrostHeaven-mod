@@ -1,9 +1,12 @@
 {
-  "itemGroup.fh": "FrostHeaven",
-  "block.fh.example_block": "Тестовый блок",
-  "item.fh.example_item": "Тестовый предмет",
   "item.fh.magnetite": "Магнетит",
   "item.fh.raw_magnetite": "Сырой магнетит",
   "item.fh.ice_shard": "Осколок льда",
-  "item.fh.voidite": "Войдит"
+  "item.fh.voidite": "Войдит",
+
+  "block.fh.ice_ore": "Руда льда",
+  "block.fh.magnetite_ore": "Руда магнетита",
+  "block.fh.voidite_ore": "Руда войдита",
+
+  "creativetab.fh.item_tab": "FrostHeaven"
 }

@@ -1,9 +1,12 @@
 {
-  "itemGroup.fh": "FrostHeaven",
-  "block.fh.example_block": "Example Block",
-  "item.fh.example_item": "Example Item",
   "item.fh.magnetite": "Magnetite",
   "item.fh.raw_magnetite": "Raw magnetite",
   "item.fh.ice_shard": "Ice shard",
-  "item.fh.voidite": "Voidite"
+  "item.fh.voidite": "Voidite",
+
+  "block.fh.ice_ore": "Ice ore",
+  "block.fh.magnetite_ore": "Magnetite ore",
+  "block.fh.voidite_ore": "Voidite ore",
+
+  "creativetab.fh.item_tab": "FrostHeaven"
 }
