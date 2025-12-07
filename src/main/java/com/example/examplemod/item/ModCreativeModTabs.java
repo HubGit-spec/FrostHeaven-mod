@@ -4,7 +4,9 @@ import com.example.examplemod.FrostHeaven;
 import com.example.examplemod.block.ModBlocks;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -18,6 +20,7 @@ public class ModCreativeModTabs {
     public static final Supplier<CreativeModeTab> FROSTHEAVEN_TAB = CREATIVE_MODE_TAB.register("item_tab",
             () -> CreativeModeTab.builder()
                     .icon(() -> new ItemStack(ModItems.ICE_SHARD.get()))
+                    .withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
                     .title(Component.translatable("creativetab.fh.item_tab"))
                     .displayItems(((itemDisplayParameters, output) -> {
                         output.accept(ModItems.ICE_SHARD);
