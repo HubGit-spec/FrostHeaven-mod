@@ -68,13 +68,7 @@ public class FrostHeaven {
 
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
-        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
-            event.accept(ModItems.MAGNETITE);
-            event.accept(ModItems.RAW_MAGNETITE);
-            event.accept(ModItems.ICE_SHARD);
-            event.accept(ModItems.VOIDITE);
-            event.accept(ModBlocks.ICE_ORE);
-        }
+        //if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {}
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
