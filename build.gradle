@@ -184,5 +184,7 @@ idea {
     module {
         downloadSources = true
         downloadJavadoc = true
+        excludeDirs += file('run')
+        excludeDirs += file('.gradle')
     }
 }
