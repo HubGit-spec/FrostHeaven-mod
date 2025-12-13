@@ -27,10 +27,15 @@ public class ModCreativeModTabs {
                         output.accept(ModItems.RAW_MAGNETITE);
                         output.accept(ModItems.VOIDITE);
 
+
                         output.accept(ModBlocks.ICE_ORE);
                         output.accept(ModBlocks.ICE_DEEPSLATE_ORE);
                         output.accept(ModBlocks.MAGNETITE_ORE);
                         output.accept(ModBlocks.VOIDITE_ORE);
+
+                        output.accept(ModBlocks.ICE_4);
+                        output.accept(ModBlocks.ICE_5);
+                        output.accept(ModBlocks.ICE_6);
                     }))
                     .build());
 

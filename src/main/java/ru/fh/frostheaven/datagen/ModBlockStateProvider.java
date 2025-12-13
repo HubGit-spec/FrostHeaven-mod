@@ -18,6 +18,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.ICE_DEEPSLATE_ORE);
         blockWithItem(ModBlocks.MAGNETITE_ORE);
         blockWithItem(ModBlocks.VOIDITE_ORE);
+
+        blockWithItem(ModBlocks.ICE_4);
+        blockWithItem(ModBlocks.ICE_5);
+        blockWithItem(ModBlocks.ICE_6);
     }
 
     private void  blockWithItem(DeferredBlock<?> deferredBlock) {

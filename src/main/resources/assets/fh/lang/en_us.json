@@ -4,10 +4,16 @@
   "item.fh.ice_shard": "Ice shard",
   "item.fh.voidite": "Voidite",
 
+
   "block.fh.ice_ore": "Ice ore",
   "block.fh.ice_deepslate_ore": "Ice deepslate ore",
   "block.fh.magnetite_ore": "Magnetite ore",
   "block.fh.voidite_ore": "Voidite ore",
+
+  "block.fh.ice_4": "Ice 4",
+  "block.fh.ice_5": "Ice 5",
+  "block.fh.ice_6": "Ice 6",
+
 
   "creativetab.fh.item_tab": "FrostHeaven"
 }

@@ -1,6 +1,9 @@
 {
   "values": [
     "fh:ice_ore",
-    "fh:magnetite_ore"
+    "fh:magnetite_ore",
+    "fh:ice_4",
+    "fh:ice_5",
+    "fh:ice_6"
   ]
 }

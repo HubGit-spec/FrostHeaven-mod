@@ -1,4 +1,7 @@
-// 1.21.1	2025-12-11T10:56:47.1933009	Loot Tables
+// 1.21.1	2025-12-13T10:55:15.6186928	Loot Tables
+5f3e9f7ac342cc718d7c937784c2d6d51363ffe9 data/fh/loot_table/blocks/ice_4.json
+1c160780ab0b0820f287103a5cf13dd83ab37c68 data/fh/loot_table/blocks/ice_5.json
+ef894fc091647b6a4183a80ac29c66fea2be77fd data/fh/loot_table/blocks/ice_6.json
 8fa83f2272d835bae9ebe3998a606a71735208e8 data/fh/loot_table/blocks/ice_deepslate_ore.json
 ed19707f15fd7a925c102e9c1a5b2954b77d1723 data/fh/loot_table/blocks/ice_ore.json
 5381ce56d3fb056adfe78eeb20e8eee9231023cd data/fh/loot_table/blocks/magnetite_ore.json

@@ -9,5 +9,10 @@
   "block.fh.magnetite_ore": "Руда магнетита",
   "block.fh.voidite_ore": "Руда войдита",
 
+  "block.fh.ice_4": "Сжатый лёд",
+  "block.fh.ice_5": "Спресованный лёд",
+  "block.fh.ice_6": "Сверхплотный лёд",
+
+
   "creativetab.fh.item_tab": "FrostHeaven"
 }

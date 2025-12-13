@@ -22,10 +22,18 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.ICE_ORE.get())
                 .add(ModBlocks.ICE_DEEPSLATE_ORE.get())
                 .add(ModBlocks.MAGNETITE_ORE.get())
-                .add(ModBlocks.VOIDITE_ORE.get());
+                .add(ModBlocks.VOIDITE_ORE.get())
+
+                .add(ModBlocks.ICE_4.get())
+                .add(ModBlocks.ICE_5.get())
+                .add(ModBlocks.ICE_6.get());
         tag(BlockTags.NEEDS_IRON_TOOL)
                 .add(ModBlocks.ICE_ORE.get())
-                .add(ModBlocks.MAGNETITE_ORE.get());
+                .add(ModBlocks.MAGNETITE_ORE.get())
+
+                .add(ModBlocks.ICE_4.get())
+                .add(ModBlocks.ICE_5.get())
+                .add(ModBlocks.ICE_6.get());
         tag(BlockTags.NEEDS_DIAMOND_TOOL)
                 .add(ModBlocks.ICE_DEEPSLATE_ORE.get())
                 .add(ModBlocks.VOIDITE_ORE.get());

@@ -26,7 +26,9 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
-        //dropSelf(ModBlocks..get())
+        dropSelf(ModBlocks.ICE_4.get());
+        dropSelf(ModBlocks.ICE_5.get());
+        dropSelf(ModBlocks.ICE_6.get());
 
         add(ModBlocks.ICE_ORE.get(),
                 block -> createMultipleOreDrops(ModBlocks.ICE_ORE.get(), ModItems.ICE_SHARD.get(), 1, 3));
@@ -41,7 +43,6 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
     protected LootTable.Builder createMultipleOreDrops(Block pBlock, Item item, float minDrops, float maxDrops) {
         HolderLookup.RegistryLookup<Enchantment> registrylookup = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
 
-        // Увеличиваем базовое количество в 3 раза
         float adjustedMin = minDrops * 3f;
         float adjustedMax = maxDrops * 3f;
 

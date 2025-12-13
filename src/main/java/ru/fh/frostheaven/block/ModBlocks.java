@@ -1,5 +1,6 @@
 package ru.fh.frostheaven.block;
 
+import net.minecraft.world.level.block.IceBlock;
 import ru.fh.frostheaven.FrostHeaven;
 import ru.fh.frostheaven.item.ModItems;
 import net.minecraft.world.item.BlockItem;
@@ -33,6 +34,18 @@ public class ModBlocks {
     public static final DeferredBlock<Block> MAGNETITE_ORE = registerBlock("magnetite_ore",
             () -> new Block(BlockBehaviour.Properties.of()
                     .strength(5f).requiresCorrectToolForDrops().sound(SoundType.NETHERRACK)));
+
+    public static final DeferredBlock<Block> ICE_4 = registerBlock("ice_4",
+            () -> new IceBlock(BlockBehaviour.Properties.of()
+                    .strength(2.9f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion().friction(0.9925f)));
+
+    public static final DeferredBlock<Block> ICE_5 = registerBlock("ice_5",
+            () -> new IceBlock(BlockBehaviour.Properties.of()
+                    .strength(3f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion().friction(0.9933f)));
+
+    public static final DeferredBlock<Block> ICE_6 = registerBlock("ice_6",
+            () -> new IceBlock(BlockBehaviour.Properties.of()
+                    .strength(3.1f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion().friction(1f)));
 
 
     private static <T extends Block> DeferredBlock<T> registerBlock (String name, Supplier<T> block){
