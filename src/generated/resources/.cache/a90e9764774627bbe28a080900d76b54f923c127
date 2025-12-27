@@ -1,4 +1,4 @@
-// 1.21.1	2025-12-13T10:55:15.6196899	Tags for minecraft:block mod id fh
-bb39a68a749e7bb730a6d11f141a337dfcfba9be data/minecraft/tags/block/mineable/pickaxe.json
+// 1.21.1	2025-12-26T14:45:42.7069402	Tags for minecraft:block mod id fh
+cb5ac97524a9186cea45d2f35a6ca0761ee9e188 data/minecraft/tags/block/mineable/pickaxe.json
 68bcf920fd2e3f92b77190a198cd9f1375bd6237 data/minecraft/tags/block/needs_diamond_tool.json
-d692fff287f80a4cb15d89ae6155322e6d615d47 data/minecraft/tags/block/needs_iron_tool.json
+76644d2b648637ee3d64819d28b283cf1fe27794 data/minecraft/tags/block/needs_iron_tool.json

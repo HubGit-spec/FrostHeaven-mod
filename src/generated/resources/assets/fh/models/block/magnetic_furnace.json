@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "fh:block/magnetic_furnace_bottom",
+    "east": "fh:block/magnetic_furnace_side",
+    "north": "fh:block/magnetic_furnace_front",
+    "south": "fh:block/magnetic_furnace_side",
+    "up": "fh:block/magnetic_furnace_top",
+    "west": "fh:block/magnetic_furnace_side"
+  }
+}

@@ -1,9 +1,10 @@
-// 1.21.1	2025-12-13T10:55:15.6166981	Block States: fh
+// 1.21.1	2025-12-26T15:28:18.3631111	Block States: fh
 c2232b0fc8164fb9456dce2736a3663c22d17f67 assets/fh/blockstates/ice_4.json
 097846f0ab8b64538ede793d7023b351bf639b5b assets/fh/blockstates/ice_5.json
 475a466fd3dd0eb9564b79f506df32da007e8604 assets/fh/blockstates/ice_6.json
 4e68e97f79899590458e6d7b2aa345adffcde3a1 assets/fh/blockstates/ice_deepslate_ore.json
 b0789ccf88ee907b0762a60409e4fa0681d54b7a assets/fh/blockstates/ice_ore.json
+405d4195d34390b8850fa682472434f9e5634d26 assets/fh/blockstates/magnetic_furnace.json
 6d96775eb03da0e6aab6b57ae26847ac3e3e61c7 assets/fh/blockstates/magnetite_ore.json
 35ed072fbf3a211d871528a5540cf8634c1eda1d assets/fh/blockstates/voidite_ore.json
 4b7944a60a42eb5ed7cadc1ca401932900023afc assets/fh/models/block/ice_4.json
@@ -11,6 +12,7 @@ b0789ccf88ee907b0762a60409e4fa0681d54b7a assets/fh/blockstates/ice_ore.json
 b4601de4c826e9d62c2d3097daa89ccde5f20571 assets/fh/models/block/ice_6.json
 80808a14a5be19a18da0ad43d80946b486badfee assets/fh/models/block/ice_deepslate_ore.json
 05a47005185e2990b081d91a328e160effea5868 assets/fh/models/block/ice_ore.json
+6e23eed5b977cf2f0a4cccf8d3659350cb57844a assets/fh/models/block/magnetic_furnace.json
 9a97a29f4d900da1e1ebbd169911b1898471d5ad assets/fh/models/block/magnetite_ore.json
 b09c944e8a6f0db68022407e40e584f522c61f80 assets/fh/models/block/voidite_ore.json
 f1056b7c0ae82a0a391527621a14eb683e56be5f assets/fh/models/item/ice_4.json
@@ -18,5 +20,6 @@ f1056b7c0ae82a0a391527621a14eb683e56be5f assets/fh/models/item/ice_4.json
 e1805e99d09e26c6da79f3dac390587a73d9c427 assets/fh/models/item/ice_6.json
 52c0b3464d8b2e8d918bf293e32cee18b8d1dc0e assets/fh/models/item/ice_deepslate_ore.json
 d3762f37ce70c95df8a703532134d31ec8a8692a assets/fh/models/item/ice_ore.json
+9f25a3dfa43331ca0b15c50aa1b685f31377aa39 assets/fh/models/item/magnetic_furnace.json
 70011d984a8fdbd50cf439339bc6a3785df5b57f assets/fh/models/item/magnetite_ore.json
 fc2c670d55c79f27fa822fd699e435df0a7e95c4 assets/fh/models/item/voidite_ore.json

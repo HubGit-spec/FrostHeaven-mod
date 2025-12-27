@@ -5,6 +5,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import ru.fh.frostheaven.FrostHeaven;
 import ru.fh.frostheaven.block.ModBlocks;
@@ -17,7 +18,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
     }
 
     @Override
-    protected void addTags(HolderLookup.Provider provider) {
+    protected void addTags(HolderLookup.@NotNull Provider provider) {
         tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(ModBlocks.ICE_ORE.get())
                 .add(ModBlocks.ICE_DEEPSLATE_ORE.get())
@@ -26,14 +27,18 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
                 .add(ModBlocks.ICE_4.get())
                 .add(ModBlocks.ICE_5.get())
-                .add(ModBlocks.ICE_6.get());
+                .add(ModBlocks.ICE_6.get())
+
+                .add(ModBlocks.MAGNETIC_FURNACE.get());
         tag(BlockTags.NEEDS_IRON_TOOL)
                 .add(ModBlocks.ICE_ORE.get())
                 .add(ModBlocks.MAGNETITE_ORE.get())
 
                 .add(ModBlocks.ICE_4.get())
                 .add(ModBlocks.ICE_5.get())
-                .add(ModBlocks.ICE_6.get());
+                .add(ModBlocks.ICE_6.get())
+
+                .add(ModBlocks.MAGNETIC_FURNACE.get());
         tag(BlockTags.NEEDS_DIAMOND_TOOL)
                 .add(ModBlocks.ICE_DEEPSLATE_ORE.get())
                 .add(ModBlocks.VOIDITE_ORE.get());

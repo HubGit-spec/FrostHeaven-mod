@@ -42,7 +42,12 @@ public class FrostHeaven {
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
         NeoForge.EVENT_BUS.register(this);
 
+//        if (System.getProperty("forge.enableGameTest", "false").equals("true") ||
+//                System.getProperty("forge.logging.markers", "").contains("SCAN")) {
+//            modEventBus.addListener(DataGenerators::gatherData);
+//        }
         modEventBus.addListener(DataGenerators::gatherData);
+
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModCreativeModTabs.register(modEventBus);

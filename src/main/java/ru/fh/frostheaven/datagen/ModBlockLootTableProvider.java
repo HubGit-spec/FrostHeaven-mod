@@ -30,6 +30,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.ICE_5.get());
         dropSelf(ModBlocks.ICE_6.get());
 
+        dropSelf(ModBlocks.MAGNETIC_FURNACE.get());
+
         add(ModBlocks.ICE_ORE.get(),
                 block -> createMultipleOreDrops(ModBlocks.ICE_ORE.get(), ModItems.ICE_SHARD.get(), 1, 3));
         add(ModBlocks.ICE_DEEPSLATE_ORE.get(),

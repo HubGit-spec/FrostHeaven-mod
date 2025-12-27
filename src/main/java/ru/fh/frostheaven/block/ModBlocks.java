@@ -47,6 +47,12 @@ public class ModBlocks {
             () -> new IceBlock(BlockBehaviour.Properties.of()
                     .strength(3.1f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion().friction(1f)));
 
+    public static final DeferredBlock<Block> MAGNETIC_FURNACE = registerBlock("magnetic_furnace",
+            () -> new MagneticFurnace(BlockBehaviour.Properties.of()
+                    .strength(3.75f, 6.5f)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.COPPER)));
+
 
     private static <T extends Block> DeferredBlock<T> registerBlock (String name, Supplier<T> block){
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);
