@@ -27,6 +27,8 @@ public class ModCreativeModTabs {
                         output.accept(ModItems.RAW_MAGNETITE);
                         output.accept(ModItems.VOIDITE);
 
+                        output.accept(ModItems.NULLBREAKER);
+
 
                         output.accept(ModBlocks.ICE_ORE);
                         output.accept(ModBlocks.ICE_DEEPSLATE_ORE);

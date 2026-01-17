@@ -21,6 +21,9 @@ public class ModItems {
     public static final DeferredItem<Item> VOIDITE = ITEMS.register("voidite",
             () -> new Item(new Item.Properties()));
 
+    public static final DeferredItem<Item> NULLBREAKER = ITEMS.register("nullbreaker",
+            () -> new Nullbreaker(new Item.Properties()));
+
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);
     }

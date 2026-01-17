@@ -1,7 +1,11 @@
 package ru.fh.frostheaven;
 
+import net.minecraft.client.renderer.entity.ThrownItemRenderer;
+import net.neoforged.fml.loading.FMLEnvironment;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import ru.fh.frostheaven.block.ModBlocks;
 import ru.fh.frostheaven.datagen.DataGenerators;
+import ru.fh.frostheaven.entity.ModEntities;
 import ru.fh.frostheaven.item.ModCreativeModTabs;
 import ru.fh.frostheaven.item.ModItems;
 import org.slf4j.Logger;
@@ -26,6 +30,7 @@ import net.neoforged.neoforge.event.server.ServerStartingEvent;
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(FrostHeaven.MODID)
 public class FrostHeaven {
+    public IEventBus bus = null;
     // Define mod id in a common place for everything to reference
     public static final String MODID = "fh";
     // Directly reference a slf4j logger
@@ -34,6 +39,8 @@ public class FrostHeaven {
     // The constructor for the mod class is the first code that is run when your mod is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
     public FrostHeaven(IEventBus modEventBus, ModContainer modContainer) {
+        bus = modEventBus;
+
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 
@@ -51,8 +58,12 @@ public class FrostHeaven {
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModCreativeModTabs.register(modEventBus);
-
+        ModSounds.SOUNDS.register(modEventBus);
+        ModEntities.ENTITIES.register(modEventBus);
         // Register the item to a creative tab
+        if (FMLEnvironment.dist == Dist.CLIENT) {
+            modEventBus.register(ClientModEvents.class);
+        }
         modEventBus.addListener(this::addCreative);
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
@@ -70,6 +81,27 @@ public class FrostHeaven {
         LOGGER.info("{}{}", Config.MAGIC_NUMBER_INTRODUCTION.get(), Config.MAGIC_NUMBER.getAsInt());
 
         Config.ITEM_STRINGS.get().forEach((item) -> LOGGER.info("ITEM >> {}", item));
+    }
+
+    private void onClientSetup(FMLClientSetupEvent event) {
+        // 3. Внутри этого метода (который выполняется только на клиенте)
+        //    подписываемся на событие регистрации рендереров.
+        event.enqueueWork(() -> {
+            IEventBus modBus = bus;
+
+            // 4. ПРЯМАЯ ПОДПИСКА на событие. Лямбда здесь — это и есть обработчик.
+            modBus.addListener((EntityRenderersEvent.RegisterRenderers eventHandler) -> {
+                // 5. Критически важный отладочный вывод
+                System.out.println("[FH] ========== ВЫЗВАН МЕТОД РЕГИСТРАЦИИ РЕНДЕРЕРА ==========");
+                System.out.println("[FH] Регистрирую рендерер для: " + ModEntities.NULLBREAKER_BULLET.get());
+
+                // 6. Регистрация рендерера
+                eventHandler.registerEntityRenderer(
+                        ModEntities.NULLBREAKER_BULLET.get(),
+                        context -> new ThrownItemRenderer<>(context, 2F, true)
+                );
+            });
+        });
     }
 
     // Add the example block item to the building blocks tab

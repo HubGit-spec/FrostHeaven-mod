@@ -17,5 +17,6 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.RAW_MAGNETITE.get());
         basicItem(ModItems.MAGNETITE.get());
         basicItem(ModItems.VOIDITE.get());
+        basicItem(ModItems.NULLBREAKER.get());
     }
 }
